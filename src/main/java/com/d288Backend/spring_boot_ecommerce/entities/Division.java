@@ -21,7 +21,7 @@ public class Division {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="division_id", nullable = false)
-    private Long id;
+    private Long division_id;
 
     @Column(name="division", nullable = false)
     private String division_name;

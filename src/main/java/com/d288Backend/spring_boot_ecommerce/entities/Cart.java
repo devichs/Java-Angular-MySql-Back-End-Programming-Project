@@ -22,7 +22,7 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="cart_id", nullable = false)
-    private Long id;
+    private Long cart_id;
 
     @Column(name="order_tracking_number", nullable = false)
     private String orderTrackingNumber;

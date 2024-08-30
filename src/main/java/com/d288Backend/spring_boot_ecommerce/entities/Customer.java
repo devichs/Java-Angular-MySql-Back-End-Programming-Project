@@ -7,12 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
-
-import java.math.BigInteger;
 import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "customers")
@@ -24,7 +19,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    private Long id;
+    private Long customer_id;
 
     @Column(name = "address")
     private VarcharJdbcType address;
@@ -52,15 +47,9 @@ public class Customer {
     @UpdateTimestamp
     private Long last_update;
 
-
+    @Setter
+    @Getter
     @OneToMany(mappedBy = "customer_id")
-    private Collection<Carts> carts;
+    private Collection<Cart> carts;
 
-    public Collection<Carts> getCarts() {
-        return carts;
-    }
-
-    public void setCarts(Collection<Carts> carts) {
-        this.carts = carts;
-    }
 }
