@@ -24,9 +24,6 @@ public class Cart {
     @Column(name="cart_id", nullable = false)
     private Long cart_id;
 
-    @Column(name="order_tracking_number", nullable = false)
-    private String orderTrackingNumber;
-
     @Column(name="package_price", nullable = false)
     private BigDecimal package_price;
 
@@ -36,6 +33,9 @@ public class Cart {
     @Column(name="status", nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusType status;
+
+    @Column(name="order_tracking_number", nullable = false)
+    private String orderTrackingNumber;
 
     @Column(name="create_date", updatable = false)
     @CreationTimestamp

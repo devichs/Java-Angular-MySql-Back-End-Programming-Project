@@ -23,6 +23,18 @@ public class CartItem {
     @Column(name="cart_item_id", nullable = false)
     private Long cart_item_id;
 
+    @Column(name="create_date", updatable = false)
+    @CreationTimestamp
+    private Date create_date;
+
+    @Column(name="last_update")
+    @UpdateTimestamp
+    private Date last_update;
+
+    @ManyToOne
+    @JoinColumn(name="cart_id", nullable = false)
+    private Cart cart;
+
     @ManyToOne
     @JoinColumn(name="vacation_id", nullable = false)
     private Vacation vacation;
@@ -34,17 +46,5 @@ public class CartItem {
             inverseJoinColumns=@JoinColumn(name="excursion_id", nullable = false)
     )
     private Set<Excursion> excursions = new HashSet<>();
-
-    @ManyToOne
-    @JoinColumn(name="cart_id", nullable = false)
-    private Cart cart;
-
-    @Column(name="create_date", updatable = false)
-    @CreationTimestamp
-    private Date create_date;
-
-    @Column(name="last_update")
-    @UpdateTimestamp
-    private Date last_update;
 }
 

@@ -8,7 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -27,26 +27,26 @@ public class Excursion {
     @Column(name = "excursion_id")
     private Long excursion_id;
 
-    @Column(name = "excursion_title")
-    private VarcharJdbcType excursion_title;
-
-    @Column(name = "image_url")
-    private VarcharJdbcType image_url;
-
-    @Column(name = "description")
-    private VarcharJdbcType description;
-
-    @ManyToOne
-    @JoinColumn(name = "vacation_id")
-    private Vacation vacation_id;
-
     @Column(name = "create_date")
     @CreationTimestamp
     private Date create_date;
 
+    @Column(name = "excursion_price")
+    private BigDecimal excursion_price;
+
+    @Column(name = "excursion_title")
+    private String excursion_title;
+
+    @Column(name = "image_url")
+    private String image_url;
+
     @Column(name = "last_update")
     @UpdateTimestamp
     private Date last_update;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vacation_id")
+    private Vacation vacation_id;
 
     @ManyToMany
     @JoinTable(

@@ -6,8 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
-import java.util.Collection;
+import java.util.Date;
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "customers")
@@ -18,38 +19,40 @@ public class Customer {
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
-    private Long customer_id;
+    @Column(name="customer_id", nullable = false)
+    private Long id;
 
-    @Column(name = "address")
-    private VarcharJdbcType address;
+    @Column(name="address", nullable = false)
+    private String address;
 
-    @Column(name = "customer_first_name")
-    private VarcharJdbcType customer_first_name;
-
-    @Column(name = "customer_last_name")
-    private VarcharJdbcType customer_last_name;
-
-    @Column(name = "phone")
-    private VarcharJdbcType phone;
-
-    @Column(name = "postal_code")
-    private VarcharJdbcType postal_code;
-
-    @Column(name = "division_id")
-    private Long division_id;
-
-    @Column(name = "create_date")
+    @Column(name="create_date", updatable = false)
     @CreationTimestamp
-    private Long create_date;
+    private Date createDate;
 
-    @Column(name = "last_update")
+    @Column(name="customer_first_name", nullable = false)
+    private String firstName;
+
+    @Column(name="customer_last_name", nullable = false)
+    private String lastName;
+
+    @Column(name="last_update")
     @UpdateTimestamp
-    private Long last_update;
+    private Date lastUpdate;
 
-    @Setter
-    @Getter
-    @OneToMany(mappedBy = "customer_id")
-    private Collection<Cart> carts;
+    @Column(name="phone", nullable = false)
+    private String phone;
 
+    @Column(name="postal_code", nullable = false)
+    private String postal_code;
+
+    @ManyToOne
+    @JoinColumn(name="division_id", nullable = false, updatable = false)
+    private Division division;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private Set<Cart> carts = new HashSet<>();
+
+    public void add(Cart cart) {
+        carts.add(cart);
+    }
 }
