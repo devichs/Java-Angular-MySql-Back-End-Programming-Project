@@ -1,6 +1,6 @@
 package com.d288Backend.spring_boot_ecommerce.config;
 
-import edu.wgu.d288_backend.entities.*;
+import com.d288Backend.spring_boot_ecommerce.entities.*;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
