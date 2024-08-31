@@ -39,11 +39,11 @@ public class Excursion {
     private String image_URL;
 
     @CreationTimestamp
-    @Column(name = "create_date")
+    @Column(name = "create_date", nullable = false)
     private Date create_date;
 
     @UpdateTimestamp
-    @Column(name = "last_update")
+    @Column(name = "last_update", nullable = false)
     private Date last_update;
 
     @ManyToOne

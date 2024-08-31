@@ -29,11 +29,11 @@ public class Division {
     private String division_name;
 
     @CreationTimestamp
-    @Column(name = "create_date")
+    @Column(name = "create_date", nullable = false)
     private Date createDate;
 
     @UpdateTimestamp
-    @Column(name = "last_update")
+    @Column(name = "last_update", nullable = false)
     private Date last_update;
 
     @ManyToOne(fetch = FetchType.LAZY)

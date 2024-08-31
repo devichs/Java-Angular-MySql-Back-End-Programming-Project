@@ -28,11 +28,11 @@ public class Country {
     @Column(name="country", nullable = false)
     private String country_name;
 
-    @Column(name="create_date", updatable = false)
+    @Column(name="create_date", nullable = false, updatable = false)
     @CreationTimestamp
     private Date create_date;
 
-    @Column(name="last_update")
+    @Column(name="last_update", nullable = false)
     @UpdateTimestamp
     private Date last_update;
 
