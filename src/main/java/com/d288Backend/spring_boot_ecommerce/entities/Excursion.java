@@ -46,7 +46,7 @@ public class Excursion {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vacation_id")
-    private Vacation vacation_id;
+    private Vacation vacation;
 
     @ManyToMany
     @JoinTable(

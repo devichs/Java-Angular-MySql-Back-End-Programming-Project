@@ -20,31 +20,59 @@ public class Division {
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="division_id", nullable = false)
-    private Long division_id;
+    @Column(name = "division_id")
+    private Long id;
 
-    @Column(name="division", nullable = false)
+    /*
+    division name
+    @String
+     */
+    @Column(name = "division")
     private String division_name;
 
-    @Column(name="create_date")
+    /*
+    Create time stamp
+    @Datetime
+     */
     @CreationTimestamp
+    @Column(name = "create_date")
     private Date createDate;
 
-    @Column(name="last_update", updatable = false)
+    /*
+    update datetime stamp for the table
+    @Datetime
+     */
     @UpdateTimestamp
-    private Date lastUpdate;
+    @Column(name = "last_update")
+    private Date last_update;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="country_id", nullable = false, insertable = false, updatable = false)
+    /*
+    Country ID
+    @Long
+     */
+    @Column(name = "country_id", insertable = false, updatable = false)
+    private Long countryID;
+
+    /*
+    mapping to other tables
+     */
+    /*
+    Country map
+     */
+    @ManyToOne
+    @JoinColumn(name = "country_id")
     private Country country;
 
-    @Column(name="country_id", nullable = false)
-    private Long country_id;
-    public void setCountry(Country country) {
-        setCountry_id(country.getId());
+    /*
+    Set of customers
+     */
+    @OneToMany(mappedBy = "division", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Customer> customers;
+
+
+    public void setCountry(Country country){
         this.country = country;
+        this.countryID = (country != null) ? country.getId() : null ;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "division")
-    private Set<Customer> customers = new HashSet<>();
 }

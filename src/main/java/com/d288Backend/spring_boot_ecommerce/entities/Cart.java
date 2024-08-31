@@ -28,12 +28,14 @@ public class Cart {
     private BigDecimal package_price;
 
     @Column(name="party_size", nullable = false)
-    private int party_size;
+    private Integer party_size;
 
+    @Setter
     @Column(name="status", nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusType status;
 
+    @Setter
     @Column(name="order_tracking_number", nullable = false)
     private String orderTrackingNumber;
 
@@ -52,7 +54,8 @@ public class Cart {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
     private Set<CartItem> cartItems = new HashSet<>();
 
-    public void add(CartItem item) {
-        this.cartItems.add(item);
+    public void add(CartItem cartItem) {
+        this.cartItems.add(cartItem);
     }
+
 }

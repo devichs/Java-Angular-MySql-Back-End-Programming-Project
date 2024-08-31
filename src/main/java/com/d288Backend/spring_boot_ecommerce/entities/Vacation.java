@@ -45,7 +45,7 @@ public class Vacation {
 
     @Setter
     @Getter
-    @OneToMany(mappedBy = "vacation_id")
-    private Collection<Excursion> excursion;
+    @OneToMany(mappedBy = "vacation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Collection<Excursion> excursions;
 
 }

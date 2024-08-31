@@ -35,10 +35,6 @@ public class CartItem {
     @JoinColumn(name="cart_id", nullable = false)
     private Cart cart;
 
-    @ManyToOne
-    @JoinColumn(name="vacation_id", nullable = false)
-    private Vacation vacation;
-
     @ManyToMany
     @JoinTable(
             name="excursion_cartitem",
@@ -46,5 +42,8 @@ public class CartItem {
             inverseJoinColumns=@JoinColumn(name="excursion_id", nullable = false)
     )
     private Set<Excursion> excursions = new HashSet<>();
+
+    @OneToMany(mappedBy = "vacation_id")
+    private Set<Vacation> vacation;
 }
 

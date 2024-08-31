@@ -49,7 +49,7 @@ public class Customer {
     @JoinColumn(name="division_id", nullable = false, updatable = false)
     private Division division;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart_id")
     private Set<Cart> carts = new HashSet<>();
 
     public void add(Cart cart) {
