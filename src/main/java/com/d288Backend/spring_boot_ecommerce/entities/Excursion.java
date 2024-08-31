@@ -3,6 +3,7 @@ package com.d288Backend.spring_boot_ecommerce.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -17,6 +18,7 @@ import java.util.Set;
 @Entity
 @Table(name = "excursions")
 @Data
+@NoArgsConstructor
 
 public class Excursion {
 
@@ -24,29 +26,29 @@ public class Excursion {
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "excursion_id")
-    private Long excursion_id;
-
-    @Column(name = "create_date")
-    @CreationTimestamp
-    private Date create_date;
-
-    @Column(name = "excursion_price")
-    private BigDecimal excursion_price;
+    @Column(name = "excursion_id",nullable = false, updatable = false)
+    private Long id;
 
     @Column(name = "excursion_title")
     private String excursion_title;
 
-    @Column(name = "image_url")
-    private String image_url;
+    @Column(name = "excursion_price")
+    private BigDecimal excursion_price;
 
-    @Column(name = "last_update")
+    @Column(name = "image_url")
+    private String image_URL;
+
+    @CreationTimestamp
+    @Column(name = "create_date")
+    private Date create_date;
+
     @UpdateTimestamp
+    @Column(name = "last_update")
     private Date last_update;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vacation_id")
-    private Vacation vacation;
+    @ManyToOne
+    @JoinColumn(name="vacation_id", nullable = false)
+    private Vacation vacation_title;
 
     @ManyToMany
     @JoinTable(
@@ -55,6 +57,4 @@ public class Excursion {
             inverseJoinColumns=@JoinColumn(name="cart_item_id", nullable = false)
     )
     private Set<CartItem> cartItems = new HashSet<>();
-
-
 }

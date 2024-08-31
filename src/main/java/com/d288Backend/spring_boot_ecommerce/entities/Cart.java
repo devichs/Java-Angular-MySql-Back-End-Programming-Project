@@ -3,6 +3,7 @@ package com.d288Backend.spring_boot_ecommerce.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -15,6 +16,7 @@ import java.util.Set;
 @Entity
 @Table(name = "carts")
 @Data
+@NoArgsConstructor
 
 public class Cart {
     @Getter
@@ -22,7 +24,7 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="cart_id", nullable = false)
-    private Long cart_id;
+    private Long id;
 
     @Column(name="package_price", nullable = false)
     private BigDecimal package_price;
@@ -30,12 +32,10 @@ public class Cart {
     @Column(name="party_size", nullable = false)
     private Integer party_size;
 
-    @Setter
     @Column(name="status", nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusType status;
 
-    @Setter
     @Column(name="order_tracking_number", nullable = false)
     private String orderTrackingNumber;
 
@@ -54,8 +54,8 @@ public class Cart {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
     private Set<CartItem> cartItems = new HashSet<>();
 
-    public void add(CartItem cartItem) {
-        this.cartItems.add(cartItem);
+    public void add(CartItem item) {
+        this.cartItems.add(item);
     }
 
 }

@@ -3,6 +3,7 @@ package com.d288Backend.spring_boot_ecommerce.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,6 +14,7 @@ import java.util.HashSet;
 @Entity
 @Table(name = "customers")
 @Data
+@NoArgsConstructor
 
 public class Customer {
     @Getter
@@ -49,7 +51,7 @@ public class Customer {
     @JoinColumn(name="division_id", nullable = false, updatable = false)
     private Division division;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Set<Cart> carts = new HashSet<>();
 
     public void add(Cart cart) {

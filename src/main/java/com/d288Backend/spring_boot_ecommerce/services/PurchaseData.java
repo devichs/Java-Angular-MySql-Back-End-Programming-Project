@@ -10,8 +10,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-public class Purchase {
+public class PurchaseData {
     private Customer customer;
     private Cart cart;
-    private Set<CartItem> cartItem;
+    private Set<CartItem> cartItems;
 }
