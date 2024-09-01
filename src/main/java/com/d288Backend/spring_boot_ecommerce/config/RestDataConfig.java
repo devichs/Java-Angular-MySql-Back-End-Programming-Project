@@ -6,6 +6,8 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
+import static org.aspectj.lang.reflect.DeclareAnnotation.Kind.Type;
+
 /**
  * <h1>RestDataConfig</h1>
  * per course instructions include this code to configure the rest api end-points exposed for the project
@@ -41,8 +43,6 @@ public class RestDataConfig implements RepositoryRestConfigurer {
         config.exposeIdsFor(Vacation.class);
         config.setDefaultPageSize(Integer.MAX_VALUE);
         config.setMaxPageSize(Integer.MAX_VALUE);
-
-
     }
 }
 

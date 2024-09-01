@@ -21,11 +21,11 @@ public class CartItem {
     @Column(name = "cart_item_id", nullable = false)
     private Long id;
 
-    @Column(name = "create_date", nullable = false, updatable = false)
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_date;
 
-    @Column(name = "last_update", nullable = false)
+    @Column(name = "last_update")
     @UpdateTimestamp
     private Date last_update;
 

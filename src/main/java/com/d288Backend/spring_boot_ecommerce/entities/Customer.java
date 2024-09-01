@@ -46,7 +46,7 @@ public class Customer {
     private String postal_code;
 
     @ManyToOne
-    @JoinColumn(name = "division_id", nullable = false)
+    @JoinColumn(name = "division_id", nullable = false, updatable = false)
     private Division division;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
