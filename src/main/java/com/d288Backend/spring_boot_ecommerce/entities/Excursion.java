@@ -1,10 +1,7 @@
 package com.d288Backend.spring_boot_ecommerce.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
@@ -17,25 +14,25 @@ import java.util.Set;
 
 @Entity
 @Table(name = "excursions")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class Excursion {
 
-    @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "excursion_id",nullable = false, updatable = false)
+    @Column(name = "excursion_id",nullable = false)
     private Long id;
 
-    @Column(name = "excursion_title")
+    @Column(name = "excursion_title",nullable = false)
     private String excursion_title;
 
-    @Column(name = "excursion_price")
+    @Column(name = "excursion_price",nullable = false)
     private BigDecimal excursion_price;
 
-    @Column(name = "image_url")
+    @Column(name = "image_url",nullable = false)
     private String image_URL;
 
     @CreationTimestamp
@@ -47,14 +44,14 @@ public class Excursion {
     private Date last_update;
 
     @ManyToOne
-    @JoinColumn(name="vacation_id", nullable = false)
+    @JoinColumn(name = "vacation_id", nullable = false)
     private Vacation vacation_title;
 
     @ManyToMany
     @JoinTable(
-            name="excursion_cartitem",
-            joinColumns=@JoinColumn(name="excursion_id", nullable = false),
-            inverseJoinColumns=@JoinColumn(name="cart_item_id", nullable = false)
+            name = "excursion_cartitem",
+            joinColumns = @JoinColumn(name = "excursion_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "cart_item_id", nullable = false)
     )
     private Set<CartItem> cartItems = new HashSet<>();
 }

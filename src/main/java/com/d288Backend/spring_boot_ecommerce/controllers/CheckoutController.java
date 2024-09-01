@@ -1,7 +1,7 @@
 package com.d288Backend.spring_boot_ecommerce.controllers;
 
 import com.d288Backend.spring_boot_ecommerce.services.CheckoutService;
-import com.d288Backend.spring_boot_ecommerce.services.PurchaseData;
+import com.d288Backend.spring_boot_ecommerce.services.Purchase;
 import com.d288Backend.spring_boot_ecommerce.services.PurchaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/checkout")
 
 public class CheckoutController {
-    private CheckoutService checkoutService;
+    private final CheckoutService checkoutService;
 
     @Autowired
     public CheckoutController(CheckoutService checkoutService){
@@ -19,7 +19,8 @@ public class CheckoutController {
     }
 
     @PostMapping("/purchase")
-    public PurchaseResponse placeOrder(@RequestBody PurchaseData purchaseData){
-        return checkoutService.placeOrder(purchaseData);
+    public PurchaseResponse placeOrder(@RequestBody Purchase purchase){
+        PurchaseResponse purchaseResponse = checkoutService.placeOrder(purchase);
+        return checkoutService.placeOrder(purchase);
     }
 }

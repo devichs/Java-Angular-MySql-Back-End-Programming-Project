@@ -1,10 +1,7 @@
 package com.d288Backend.spring_boot_ecommerce.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,12 +11,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "divisions")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class Division {
-    @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "division_id")
@@ -30,17 +27,17 @@ public class Division {
 
     @CreationTimestamp
     @Column(name = "create_date", nullable = false)
-    private Date createDate;
+    private Date create_date;
 
     @UpdateTimestamp
     @Column(name = "last_update", nullable = false)
     private Date last_update;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="country_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "country_id", nullable = false, insertable = false, updatable = false)
     private Country country;
 
-    @Column(name="country_id", nullable = false)
+    @Column(name = "country_id", nullable = false)
     private Long country_id;
 
     public void setCountry(Country country) {

@@ -1,8 +1,7 @@
 package com.d288Backend.spring_boot_ecommerce.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.math.BigDecimal;
@@ -12,8 +11,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "vacations")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class Vacation {
     @Id

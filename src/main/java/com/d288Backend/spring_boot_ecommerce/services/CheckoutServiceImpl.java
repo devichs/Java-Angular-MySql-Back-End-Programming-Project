@@ -1,6 +1,5 @@
 package com.d288Backend.spring_boot_ecommerce.services;
 
-import com.d288Backend.spring_boot_ecommerce.dao.CartItemRepository;
 import com.d288Backend.spring_boot_ecommerce.dao.CartRepository;
 import com.d288Backend.spring_boot_ecommerce.dao.CustomerRepository;
 import com.d288Backend.spring_boot_ecommerce.entities.Cart;
@@ -27,7 +26,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     @Override
     @Transactional
-    public PurchaseResponse placeOrder(PurchaseData purchase) {
+    public PurchaseResponse placeOrder(Purchase purchase) {
 
         Cart cart = purchase.getCart();
         Customer customer = purchase.getCustomer();
