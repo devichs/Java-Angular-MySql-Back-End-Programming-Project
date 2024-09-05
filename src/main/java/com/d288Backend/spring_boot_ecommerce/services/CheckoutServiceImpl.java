@@ -2,7 +2,6 @@ package com.d288Backend.spring_boot_ecommerce.services;
 
 import com.d288Backend.spring_boot_ecommerce.dao.CartItemRepository;
 import com.d288Backend.spring_boot_ecommerce.dao.CartRepository;
-import com.d288Backend.spring_boot_ecommerce.dao.CustomerRepository;
 import com.d288Backend.spring_boot_ecommerce.entities.Cart;
 import com.d288Backend.spring_boot_ecommerce.entities.CartItem;
 import com.d288Backend.spring_boot_ecommerce.entities.Customer;
@@ -35,19 +34,15 @@ public class CheckoutServiceImpl implements CheckoutService {
         Customer customer = purchase.getCustomer();
         Set<CartItem> cartItems = purchase.getCartItems();
 
-
-        //cart.setId(cartId);
         String orderTrackingNumber = UUID.randomUUID().toString();
         cart.setOrderTrackingNumber(orderTrackingNumber);
         cart.setStatus(StatusType.ordered);
         cartItems.forEach(cartItem -> {
             cart.add(cartItem);
             cartItem.setCart(cart);
-            //cartItemRepository.save(cartItem);
         });
-        //customerRepository.save(customer);
+
         cartRepository.save(cart);
-        //cartItemRepository.saveAll(cartItems);
 
         return new PurchaseResponse(orderTrackingNumber);
     }
